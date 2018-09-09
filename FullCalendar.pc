@@ -14,7 +14,7 @@
 
 */
 
-import MN_CALENDAR:FullCalendar:Event;
+import RX_UTILS_PKG:Calendar:Event;
 
 class FullCalendar
    /*
@@ -30,7 +30,7 @@ class FullCalendar
    property array of any Events;
 
    method FullCalendar();
-   method NewEvent() Returns MN_CALENDAR:FullCalendar:Event;
+   method NewEvent() Returns RX_UTILS_PKG:Calendar:Event;
    method Draw() Returns string;
 
 private
@@ -63,8 +63,8 @@ method CreateEventsArray
 end-method;
 
 method NewEvent
-   /+ Returns MN_CALENDAR:FullCalendar:Event +/
-   Return create MN_CALENDAR:FullCalendar:Event();
+   /+ Returns RX_UTILS_PKG:Calendar:Event +/
+   Return create RX_UTILS_PKG:Calendar:Event();
 end-method;
 
 method Draw
