@@ -1,8 +1,6 @@
 # PeopleSoftFullCalendar
 PeopleCode wrapper to implement FullCalendar in PeopleSoft. [https://fullcalendar.io](https://fullcalendar.io)
 
-Simple wrapper around the JQuery plugin FullCalendar.
-
 ## Example Code
 
     import YOUR_APP_PACKAGE:CALENDAR:FullCalendar;
