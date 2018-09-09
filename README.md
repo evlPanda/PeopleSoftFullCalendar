@@ -26,6 +26,6 @@ PeopleCode wrapper to implement FullCalendar in PeopleSoft. [https://fullcalenda
 
     PS_SOME_RECORD.HTMLAREA.Value = &Calendar.Draw();
 
-You'll have to copy-pasta the CSS and JavaScript into HTML Objects. I *strongly* recommend you use *PeopleTools > Portal > Branding > Branding Objects* to do this as it won't corrupt the sometimes minimised files by adding random carriage returns and the like.
+You'll have to copy-pasta the CSS and JavaScript into HTML Objects. I *highly* recommend you use *PeopleTools > Portal > Branding > Branding Objects* to do this as it won't corrupt the sometimes minimised files by adding random carriage returns and the like.
 
 Should be nice to extend, there's already an example in the *Subclasses* package.
