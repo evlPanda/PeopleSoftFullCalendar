@@ -1,0 +1,109 @@
+/* Michael Nitschke 08/09/2018
+
+   Peoplecode wrapper for https://fullcalendar.io
+
+   The following Stylesheet and JavaScript needs to be added
+   to your component under Component Properties > Style :
+
+      StyleSheet.RX_FULL_CALENDAR_CSS
+      JavaScript.RX_MOMENT_JS
+      JavaScript.RX_JQUERY_3_3_1_JS
+      JavaScript.RX_FULL_CALENDAR_3_9_0_JS
+
+   If you not on the RX project you can find the above easily enough on the web. Read the FullCalendar docs.
+
+*/
+
+import MN_CALENDAR:FullCalendar:Event;
+
+class FullCalendar
+   /*
+   Options to override the default calendar settings. */
+   property string Views; /* [,month][,week][,day][,agendaWeek][,agendaDay] */
+   property string DefaultView;
+   property string MinTime; /* ["08:00:00"] */
+   property string MaxTime;
+   property boolean Weekends;
+   property boolean AllDaySlot;
+   property boolean UseHostedScripts;
+
+   property array of any Events;
+
+   method FullCalendar();
+   method NewEvent() Returns MN_CALENDAR:FullCalendar:Event;
+   method Draw() Returns string;
+
+private
+   instance string &calendar;
+   method SetDefaults();
+   method CreateEventsArray();
+   method AddHostedScripts();
+   method AddInitScript();
+   method AddEventsToInitScript();
+   method AddCalendarDiv();
+end-class;
+
+method FullCalendar
+   %This.SetDefaults();
+   %This.CreateEventsArray();
+end-method;
+
+method SetDefaults
+   %This.Views = "month,agendaWeek,agendaDay";
+   %This.DefaultView = "agendaWeek";
+   %This.MinTime = "08:00:00";
+   %This.MaxTime = "20:00:00";
+   %This.Weekends = False;
+   %This.AllDaySlot = False;
+   %This.UseHostedScripts = False;
+end-method;
+
+method CreateEventsArray
+   %This.Events = CreateArray();
+end-method;
+
+method NewEvent
+   /+ Returns MN_CALENDAR:FullCalendar:Event +/
+   Return create MN_CALENDAR:FullCalendar:Event();
+end-method;
+
+method Draw
+   /+ Returns String +/
+   %This.AddHostedScripts();
+   %This.AddInitScript();
+   %This.AddEventsToInitScript();
+   %This.AddCalendarDiv();
+   Return &calendar;
+end-method;
+
+/* Set &UseHostedScripts = True if not using Component properties
+   for the required JavaScript and CSS. */
+method AddHostedScripts
+   If &UseHostedScripts Then
+      &calendar = &calendar | GetHTMLText(HTML.RX_FULL_CALENDAR_HOSTED_SCRIPT);
+   End-If;
+end-method;
+
+method AddInitScript
+   &calendar = &calendar | GetHTMLText(HTML.RX_FULL_CALENDAR_INIT);
+   &calendar = Substitute(&calendar, "[:views]", %This.Views);
+   &calendar = Substitute(&calendar, "[:defaultView]", %This.DefaultView);
+   &calendar = Substitute(&calendar, "[:minTime]", %This.MinTime);
+   &calendar = Substitute(&calendar, "[:maxTime]", %This.MaxTime);
+   &calendar = Substitute(&calendar, "[:weekends]", Lower(String(%This.Weekends)));
+   &calendar = Substitute(&calendar, "[:allDaySlot]", Lower(String(%This.AllDaySlot)));
+end-method;
+
+method AddEventsToInitScript
+   Local string &eventsHTML;
+   Local integer &i;
+   For &i = 1 To &Events.Len
+      &eventsHTML = &eventsHTML | &Events [&i].Generate();
+   End-For;
+   &eventsHTML = Left(&eventsHTML, Len(&eventsHTML) - 1);
+   &calendar = Substitute(&calendar, "[:events]", &eventsHTML);
+end-method;
+
+method AddCalendarDiv
+   &calendar = &calendar | "<div id='calendar'></div>" | Char(13);
+end-method;

@@ -1,0 +1,27 @@
+class Event
+   property string Title;
+   property string URL;
+   property string Start; /* e.g. 2018-09-07T10:30:00 */
+   property string End;
+   property string className; /* yellow, orange, red, magenta, violet, blue, cyan, green */
+   method Generate() Returns string;
+private
+   method Template() Returns string;
+end-class;
+
+method Generate
+   /+ Returns String +/
+   Local string &event;
+   &event = %This.Template();
+   &event = Substitute(&event, "[:title]", %This.Title);
+   &event = Substitute(&event, "[:url]", %This.URL);
+   &event = Substitute(&event, "[:start]", %This.Start);
+   &event = Substitute(&event, "[:end]", %This.End);
+   &event = Substitute(&event, "[:classname]", %This.className);
+   Return &event;
+end-method;
+
+method Template
+   /+ Returns String +/
+   Return GetHTMLText(HTML.RX_FULL_CALENDAR_EVENT);
+end-method;

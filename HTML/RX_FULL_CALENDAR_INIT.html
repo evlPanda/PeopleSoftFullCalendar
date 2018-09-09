@@ -1,0 +1,21 @@
+<script>
+$(document).ready(function() {
+  $('#calendar').fullCalendar({
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: '[:views]'
+    },
+    navLinks: true,
+    defaultView: '[:defaultView]',
+    minTime: '[:minTime]',
+    maxTime: '[:maxTime]',
+    weekends: [:weekends],
+    allDaySlot: [:allDaySlot],
+    eventLimit: true,
+    events: [
+      [:events]
+    ]
+  })
+});
+</script>

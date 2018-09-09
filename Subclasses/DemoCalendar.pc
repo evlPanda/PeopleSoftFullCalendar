@@ -1,0 +1,72 @@
+import RX_UTILS_PKG:Calendar:FullCalendar;
+
+class DemoCalendar extends RX_UTILS_PKG:Calendar:FullCalendar
+   method DemoCalendar();
+private
+   method CreateDemoEvents();
+end-class;
+
+method DemoCalendar
+   %Super = create RX_UTILS_PKG:Calendar:FullCalendar();
+   %This.CreateDemoEvents();
+end-method;
+
+method CreateDemoEvents
+   Local any &Event;
+   Local string &date;
+
+   &Event = %Super.NewEvent();
+   &date = DateTimeToLocalizedString(%Date, "yyyy-MM-dd");
+   &Event.Title = "Pottery";
+   &Event.URL = "http://www.google.com";
+   &Event.Start = &date | "T09:00:00";
+   &Event.End = &date | "T11:00:00";
+   &Event.className = "yellow";
+   %Super.Events.Push(&Event);
+
+   &Event = %Super.NewEvent();
+   &date = DateTimeToLocalizedString(%Date + 1, "yyyy-MM-dd");
+   &Event.Title = "Glazing I";
+   &Event.URL = "http://www.google.com";
+   &Event.Start = &date | "T13:00:00";
+   &Event.End = &date | "T16:00:00";
+   &Event.className = "orange";
+   %Super.Events.Push(&Event);
+
+   &Event = %Super.NewEvent();
+   &date = DateTimeToLocalizedString(%Date + 2, "yyyy-MM-dd");
+   &Event.Title = "Glazing II";
+   &Event.URL = "http://www.google.com";
+   &Event.Start = &date | "T09:00:00";
+   &Event.End = &date | "T11:00:00";
+   &Event.className = "red";
+   %Super.Events.Push(&Event);
+
+   &Event = %Super.NewEvent();
+   &date = DateTimeToLocalizedString(%Date + 3, "yyyy-MM-dd");
+   &Event.Title = "Elements of Form";
+   &Event.URL = "http://www.google.com";
+   &Event.Start = &date | "T09:30:00";
+   &Event.End = &date | "T11:30:00";
+   &Event.className = "cyan";
+   %Super.Events.Push(&Event);
+
+   &Event = %Super.NewEvent();
+   &date = DateTimeToLocalizedString(%Date + 4, "yyyy-MM-dd");
+   &Event.Title = "History of Art";
+   &Event.URL = "http://www.google.com";
+   &Event.Start = &date | "T11:00:00";
+   &Event.End = &date | "T14:00:00";
+   &Event.className = "magenta";
+   %Super.Events.Push(&Event);
+
+   &Event = %Super.NewEvent();
+   &date = DateTimeToLocalizedString(%Date + 4, "yyyy-MM-dd");
+   &Event.Title = "World Cultures";
+   &Event.URL = "http://www.google.com";
+   &Event.Start = &date | "T13:00:00";
+   &Event.End = &date | "T17:00:00";
+   &Event.className = "blue";
+   %Super.Events.Push(&Event);
+
+end-method;

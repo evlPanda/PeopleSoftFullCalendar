@@ -1,0 +1,44 @@
+import RX_UTILS_PKG:Calendar:FullCalendar;
+
+class InstructorSchedule extends RX_UTILS_PKG:Calendar:FullCalendar
+   property string InstructorID get set;
+   method InstructorSchedule();
+private
+   instance string &iInstructorID;
+   instance SQL &Schedule;
+   method GetSchedule();
+   method AddEvents()
+end-class;
+
+method InstructorSchedule
+   %Super = create RX_UTILS_PKG:Calendar:FullCalendar();
+end-method;
+
+get InstructorID
+   /+ Returns String +/
+   Return &iInstructorID;
+end-get;
+
+set InstructorID
+   /+ &NewValue as String +/
+   &iInstructorID = &NewValue;
+   %This.GetSchedule();
+   %This.AddEvents();
+end-set;
+
+method GetSchedule
+   &Schedule = CreateSQL(GetHTMLText(HTML.RX_INSTRUCTOR_SCHEDULE_SQL), %This.InstructorID);
+end-method;
+
+method AddEvents
+   Local any &Event;
+   Local string &title, &start, &end;
+   While &Schedule.Fetch(&title, &start, &end)
+      &Event = %Super.NewEvent();
+      &Event.Title = &title;
+      &Event.Start = &start;
+      &Event.End = &end;
+      &Event.className = "";
+      %Super.Events.Push(&Event);
+   End-While;
+end-method;
