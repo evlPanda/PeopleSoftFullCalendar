@@ -2,7 +2,7 @@
 PeopleCode wrapper to implement FullCalendar in PeopleSoft. [https://fullcalendar.io](https://fullcalendar.io)
 
 ## To Import
-Because subsequent version of PEopleTools often don't allow you to import Projects from pervious versions I've copied all code into text files. 
+Because subsequent version of PeopleTools often don't allow you to import Projects from pervious versions I've copied all code into text files. 
 
 You'll want an Application Package with the following structure:
 
@@ -12,6 +12,8 @@ You'll want an Application Package with the following structure:
       |--SubClasses
            |--DemoCalendar
            |--InstructorSchedule
+
+You'll have to copy-pasta the CSS and JavaScript into HTML Objects. I *highly* recommend you use *PeopleTools > Portal > Branding > Branding Objects* to do this as it won't corrupt the sometimes minimised files by adding random carriage returns and the like.
 
 ## Example Component
 
@@ -49,6 +51,4 @@ Add the following Stylesheet and JavaScript under Component Properties > Style:
 
     PS_SOME_RECORD.HTMLAREA.Value = &Calendar.Draw();
 
-You'll have to copy-pasta the CSS and JavaScript into HTML Objects. I *highly* recommend you use *PeopleTools > Portal > Branding > Branding Objects* to do this as it won't corrupt the sometimes minimised files by adding random carriage returns and the like.
 
-Should be nice to extend, there's already an example in the *Subclasses* package.
