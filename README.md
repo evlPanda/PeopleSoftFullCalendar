@@ -4,7 +4,7 @@ PeopleCode wrapper to implement FullCalendar in PeopleSoft. [https://fullcalenda
 ## To Import
 Because subsequent version of PEopleTools often don't allow you to import Projects from pervious versions I've copied all code into text files. 
 
-You'll want an Application Package with the folowing structure:
+You'll want an Application Package with the following structure:
 
     Package
       |--Event
@@ -17,7 +17,7 @@ You'll want an Application Package with the folowing structure:
 
 You need a Component with a Page with an HTML Area on it.
 
-The following Stylesheet and JavaScript needs to be added to your component under Component Properties > Style :
+Add the following Stylesheet and JavaScript under Component Properties > Style:
 
       StyleSheet.RX_FULL_CALENDAR_CSS
       JavaScript.RX_MOMENT_JS
