@@ -52,3 +52,12 @@ Add the following Stylesheet and JavaScript under Component Properties > Style:
     PS_SOME_RECORD.HTMLAREA.Value = &Calendar.Draw();
 
 
+## In Action
+
+![](https://i.imgur.com/sFPG7bI.png)
+
+![](https://i.imgur.com/ybWCvoL.png)
+
+![](https://i.imgur.com/vN9B3qV.png)
+
+![](https://i.imgur.com/NfWZeda.png)
